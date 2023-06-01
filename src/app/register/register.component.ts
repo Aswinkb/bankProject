@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+  acno:any
+  uname:any
+  psw:any
+  cpsw:any
+
+  signup(){
+// console.log(this.acno);
+// console.log(this.uname);
+// console.log(this.psw);
+// console.log(this.cpsw);
+var acno=this.acno
+var uname=this.uname
+var psw=this.psw
+var cpsw=this.cpsw
+  }
 }
