@@ -1,25 +1,24 @@
-<h3 class="p-3 ms-5" style="color:rgb(20, 57, 161) ;">{{data}}</h3>
 <div>
     <div class="text-center row  w-100">
         <div class="col-6 mt-5">
-            <form id="d" style="background-color: rgb(20, 57, 161);margin-top: 50px; border-radius: 10px;"
-                class=" p-3 w-75 container " action="">
+            <form id="d" style="background-color: rgb(20, 57, 161);margin-top: 80px; border-radius: 10px;"
+                class=" p-4 w-75 container " action="">
                 <h1 style="color:white ; ">Sign In</h1>
                 <div class="mt-2 p-2">
-                    <input id="u1" name="uname" class="form-control mt-2 p-2" type="text" [placeholder]="pdata">
+                    <input [(ngModel)]="acno" id="u1" name="uname" class="form-control mt-2 p-2" type="text" [placeholder]="pdata">
                 </div>
                 <div class="mt-2 p-2">
-                    <input #psw id="p1" class="form-control mt-2 p-2" type="password" placeholder="password">
+                    <input [(ngModel)]="psw"  id="p1" name="psw" class="form-control mt-2 p-2" type="password" placeholder="password">
                 </div>
-                <button (click)="login(psw)" type="button" class="btn btn-outline-light m-2">LogIn</button>
+                <button (click)="login()" type="button" class="btn btn-outline-light m-2">LogIn</button>
                 <p style="color: white;">Don't have an account?
                     <a style="color: white; text-decoration: none;" routerLink="register"><strong>Create an
                             account</strong></a>
                 </p>
             </form>
         </div>
-        <div class="col-6 p-3">
-            <img id="d" style="height: 470px;" src="https://i.postimg.cc/R06xgCJ9/45405779-bank-doodle.jpg" alt="">
+        <div class="col-6 p-4">
+            <img id="d" style="height: 500px;" src="https://i.postimg.cc/R06xgCJ9/45405779-bank-doodle.jpg" alt="">
         </div>
 
     </div>
