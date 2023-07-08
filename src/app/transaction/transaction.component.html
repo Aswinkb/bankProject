@@ -1,0 +1,42 @@
+<h1 class="mt-4 mb-3 text-center text-primary">Account Statement</h1>
+<p class="mt-2 mb-3 text-center ">{{date | date : 'medium'}}</p>
+<div class="text-center" >
+    <button id="d" (click)="filterPipe('CREDIT')"  type="button" class="btn btn-warning text-dark" >Credit</button>
+    <button id="d" (click)="filterPipe('DEBIT')" type="button" class="btn btn-success ms-4" >Debit</button>
+    <button id="d" (click)="filterPipe('')" type="button" class="btn btn-info text-white ms-4" >All </button>
+
+</div>
+<div class="row  mb-5">
+    <div class="col-lg-8 col-md-6 col-sm-12 mt-12">
+        <table class=" mt-5 table table-primary w-75 container table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of transactions | filter : searchString : 'type'; let j =index">
+                    <td>{{j+1}}</td>
+                    <td>{{i.type}}</td>
+                    <td>{{i.amount}}</td>
+                    <td>{{i.date}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="text-center">
+            <button (click)="exportPdf()" id="d" type="button" class="btn btn-danger " >Print</button>
+    
+            <button id="d" (click)="back()" type="button" class="btn btn-primary ms-3" >Back to <i class="fa-solid fa-house-chimney"></i></button>
+    
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-0 mt-0">
+        <img id="d" src="https://i.postimg.cc/vBtcQnsZ/images-1.jpg" class="w-100 container " alt="">
+
+    </div>
+   
+</div>

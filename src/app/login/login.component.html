@@ -1,15 +1,26 @@
 <div>
     <div class="text-center row  w-100">
-        <div class="col-6 mt-5">
-            <form id="d" style="background-color: rgb(20, 57, 161);margin-top: 80px; border-radius: 10px;"
+        <div class="col-lg-6 col-md-6 col-sm-12 mt-12">
+            <form [formGroup]="loginForm" id="d" style="background-color: rgb(20, 57, 161);margin-top: 80px; border-radius: 10px;"
                 class=" p-4 w-75 container " action="">
                 <h1 style="color:white ; ">Sign In</h1>
                 <div class="mt-2 p-2">
-                    <input [(ngModel)]="acno" id="u1" name="uname" class="form-control mt-2 p-2" type="text" [placeholder]="pdata">
+                    <input formControlName="acno" id="u1" name="uname" class="form-control mt-2 p-2" type="text" [placeholder]="pdata">
                 </div>
+                <div *ngIf="(loginForm.get('acno')?.errors) && (this.loginForm.get('acno')?.touched)">
+                    <p class="text-danger">must contains numbers only</p>
+                </div>
+
                 <div class="mt-2 p-2">
-                    <input [(ngModel)]="psw"  id="p1" name="psw" class="form-control mt-2 p-2" type="password" placeholder="password">
+                    <input formControlName="psw"  id="p1" name="psw" class="form-control mt-2 p-2" type="password" placeholder="password">
                 </div>
+                <div *ngIf="(this.loginForm.get('psw')?.errors) && (this.loginForm.get('psw')?.touched)">
+                    <p class="text-danger"> must contain numbers and characters only</p>
+                </div>
+                <div *ngIf="pswCheck">
+                    <p class="text-danger">incorrect password</p>
+                </div>
+
                 <button (click)="login()" type="button" class="btn btn-outline-light m-2">LogIn</button>
                 <p style="color: white;">Don't have an account?
                     <a style="color: white; text-decoration: none;" routerLink="register"><strong>Create an
@@ -17,7 +28,7 @@
                 </p>
             </form>
         </div>
-        <div class="col-6 p-4">
+        <div class="col-lg-6 col-md-6 col-sm-0 mt-0 p-4">
             <img id="d" style="height: 500px;" src="https://i.postimg.cc/R06xgCJ9/45405779-bank-doodle.jpg" alt="">
         </div>
 

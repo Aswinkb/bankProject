@@ -1,20 +1,37 @@
-<div >
+<div>
     <div class="text-center row  w-100  mt-2">
         <div class="col-6 mt-5">
-            <form id="d" style="background-color: rgb(20, 57, 161); border-radius: 10px;"
+            <form [formGroup]="registerForm" id="d" style="background-color: rgb(20, 57, 161); border-radius: 10px;"
                 class="mb-5 p-3 w-75 container " action="">
-                <h1  style="color:white ; ">Sign Up</h1>
+                <h1 style="color:white ; ">Sign Up</h1>
                 <div class="mt-2 p-2">
-                    <input [(ngModel)]="acno" id="u1" name="acno" class="form-control mt-2 p-2" type="text" placeholder="Acc no">
+                    <input formControlName="acno" id="u1" name="acno" class="form-control mt-2 p-2" type="text"
+                        placeholder="Acc no">
+                </div>
+                <div *ngIf="(this.registerForm.get('acno')?.errors) && (this.registerForm.get('acno')?.touched)">
+                    <p class="text-danger">must contains numbers only</p>
                 </div>
                 <div class="mt-2 p-2">
-                    <input [(ngModel)]="uname" id="p1" name="uname" class="form-control mt-2 p-2" type="text" placeholder="user name">
+                    <input formControlName="uname" id="p1" name="uname" class="form-control mt-2 p-2" type="text"
+                        placeholder="user name">
+                </div>
+                <div *ngIf="(this.registerForm.get('uname')?.errors) && (this.registerForm.get('uname')?.touched)">
+                    <p class="text-danger">must contain alphabets only</p>
+
                 </div>
                 <div class="mt-2 p-2">
-                    <input [(ngModel)]="psw" id="p1" name="ps1" class="form-control mt-2 p-2" type="password" placeholder="enter password">
+                    <input formControlName="psw" id="p1" name="ps1" class="form-control mt-2 p-2" type="password"
+                        placeholder="enter password">
+                </div>
+                <div *ngIf="(this.registerForm.get('psw')?.errors) && (this.registerForm.get('psw')?.touched)">
+                    <p class="text-danger"> must contain numbers and characters only</p>
                 </div>
                 <div class="mt-2 p-2">
-                    <input [(ngModel)]="cpsw" id="p2" name="ps2" class="form-control mt-2 p-2" type="password" placeholder="confirm password">
+                    <input formControlName="cpsw" id="p2" name="ps2" class="form-control mt-2 p-2" type="password"
+                        placeholder="confirm password">
+                </div>
+                <div *ngIf="pswCheck">
+                    <h5 class="text-danger">password doesn't match</h5>
                 </div>
 
                 <button (click)="signup()" type="button" class="btn btn-outline-light m-2">SignUp</button>

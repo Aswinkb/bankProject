@@ -1,28 +1,31 @@
 <div class="row w-100">
-    <div class="col-3 p-3 mb-2" style="background-color: rgb(20, 57, 161);">
+    <div class="col-4 p-3 mb-2" style="background-color: rgb(20, 57, 161);">
         <div class="col-3 w-100" style="background-color: rgb(20, 57, 161);">
-            <div class="list-group border border-0 w-100 ">
+            <div class="list-group text-center border border-0 w-100 ">
                 <button id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="accessUser()"
                     class="list-group-item list-group-item-action border-0">
                     <i class="fa-solid fa-user text-warning ms-3 me-2"></i>View Profile</button>
                 <hr class="text-white">
-                <button id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
+                <button (click)="getBal()" id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
                     class="list-group-item list-group-item-action border-0">
                     <i class="fa-solid fa-sack-dollar text-warning ms-3 me-2"></i>Check Balance</button>
                 <hr class="text-white">
                 <button id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
+                    data-bs-toggle="modal" data-bs-target="#amntTransfer"
                     class="list-group-item list-group-item-action border-0">
                     <i class="fa-solid fa-money-bill-transfer text-warning ms-3 me-2"></i>Money Transfer</button>
                 <hr class="text-white">
-                <button id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
+                <a href="transaction" id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
                     class="list-group-item list-group-item-action border-0">
-                    <i class="fa-solid fa-table-list text-warning ms-3 me-2"></i>Account Statement</button>
+                    <i class="fa-solid fa-table-list text-warning ms-3 me-2"></i>Account Statement</a>
                 <hr class="text-white">
-                <button id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
+                <button (click)="deleteAc()" id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
                     class="list-group-item list-group-item-action border-0">
                     <i class="fa-solid fa-person-circle-minus text-warning ms-3 me-2"></i>Delete Account</button>
                 <hr class="text-white">
-                <button id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
+                <button (click)="logout()" id="d" style="background-color: rgb(20, 57, 161);color: white;" type="button"
                     class="list-group-item list-group-item-action border-0">
                     <i class="fa-solid fa-right-from-bracket text-warning ms-3 me-2"></i>Log out</button>
                 <hr class="text-white">
@@ -34,15 +37,123 @@
             <i class="fa-solid fa-hand-holding-dollar fa-2x"></i>
         </div>
     </div>
-    <div class="col-9 p-3  text-center ">
+    <div class="col-8 p-3  text-center ">
+        <h2 style="color: rgb(20, 57, 161); ">Hi {{uname}},</h2>
         <h1 style="color: rgb(20, 57, 161);" class="mb-3">Enjoy NetBanking with <span class="text-warning">SBI</span>
         </h1>
-        <p class="text-start w-75 container">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, nihil ea
+        <app-delete (onDelete)="deleteAccount($event)" [item]="acno1" (onCancel)="cancelChild()"></app-delete>
+        <p [ngClass]="acno1?'s':''" class="text-start w-75 container">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, nihil ea
             architecto, fuga possimus modi porro eos dolor nulla blanditiis nesciunt eligendi ex atque sit maiores
             veritatis dolores ipsa sunt! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore corrupti
             culpa perspiciatis quae deserunt ea provident labore ut incidunt asperiores. Quibusdam harum nulla delectus
             eaque! Repudiandae facere et sequi nesciunt.</p>
-        <img id="d" class="w-50 p-2" src="https://i.postimg.cc/1zp26dnr/12085313-20944139.jpg" alt="">
+        <img [ngClass]="acno1?'s':''" id="d" class="w-50 p-2" src="https://i.postimg.cc/1zp26dnr/12085313-20944139.jpg" alt="">
     </div>
 
+</div>
+
+<!---------------- view profile -------------->
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content " style="border: rgb(110, 110, 109) 5px solid;">
+
+            <div class="modal-body text-center" style="  background-color: rgb(249, 250, 254); ">
+                <img class="w-50" src="https://i.postimg.cc/hvxx5XTW/asxf7-18dlu.jpg" alt="" srcset="">
+
+
+            </div>
+            <div class="text-white p-5" style="background-color: rgb(85, 5, 122);">
+                <div>
+                    <h3 class="text-warning">User name</h3>
+                    <div class="text-center">
+                        <h5>{{userData.uname}}</h5>
+
+                    </div>
+                </div>
+                <hr class="text-white">
+                <div>
+                    <h3 class="text-warning">Account No</h3>
+                    <div class="text-center">
+                        <h5>{{userData.acno}}</h5>
+
+                    </div>
+                </div>
+                <hr class="text-white">
+                <div class="">
+                    <button type="button" class="btn btn-warning w-100" data-bs-dismiss="modal">Close</button>
+
+                </div> <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------------------- view balance ---------------------->
+<div style="color: rgb(20, 57, 161); background-color: white;" class="offcanvas offcanvas-start" tabindex="-1"
+    id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header ">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Balance Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" style="background-color: rgb(85, 5, 122);">
+        <div class="p-2">
+            <img class="w-50" style="margin-left: auto; margin-right: auto; display: block;"
+                src="https://i.postimg.cc/DyPK818H/unnamed.jpg" alt="">
+            <h3 class="mt-5 text-white">Account No</h3>
+            <div class="text-center text-warning">
+                <h5>{{acno}}</h5>
+                <hr class="text-white">
+            </div>
+            <h3 class="mt-5 text-white">Current Balance </h3>
+            <div class="text-center text-warning">
+                <h5>{{bal}}</h5>
+            </div>
+            <hr class="text-white">
+        </div>
+
+    </div>
+</div>
+
+<!-- moneytransfer  -->
+<div class="modal fade" id="amntTransfer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+            <div class="modal" style="background-color:rgb(85, 5, 122);">
+                <!-- <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body text-center" style="background-color: rgb(85, 5, 122);">
+                <h2 class="modal-title  text-warning" id="exampleModalLabel">Transfer Money</h2>
+
+                <div class="w-75 container">
+                    <form class="p-2  " [formGroup]="transaction">
+                        <h5 class="text-warning"></h5>
+                        <input formControlName="acno"  id="acc1" name="toAcno" class="form-control mt-4 p-2" type="text"
+                            placeholder="Reciepient's Acc No">
+                        <div *ngIf="(this.transaction.get('acno')?.errors) && (this.transaction.get('acno')?.touched)">
+                            <p class="text-danger"> must contain numbers only</p>
+                        </div>
+                        <h5 class="text-warning mt-4"></h5>
+                        <input formControlName="amnt" id="amnt1" name="amnt" class="form-control mt-4 p-2" type="text"
+                            placeholder="Amount to be credited">
+                        <div *ngIf="(this.transaction.get('amnt')?.errors) && (this.transaction.get('amnt')?.touched)">
+                            <p class="text-danger"> must contain numbers only</p>
+                        </div>
+                        <h5 class="text-warning mt-4"></h5>
+                        <input formControlName="psw" id="p1" name="psw" class="form-control mt-4 p-2" type="password"
+                            placeholder="Enter password">
+                            <div *ngIf="(this.transaction.get('psw')?.errors) && (this.transaction.get('psw')?.touched)">
+                                <p class="text-danger"> must contain numbers and characters only</p>
+                            </div>
+                        <button (click)="moneyTransfer()" type="button" class="btn btn-warning w-100 mt-3">Transfer</button>
+
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:rgb(85, 5, 122);">
+                <div class=" w-75 text-center"><p [ngClass]="alertColor?'s1':'s2'" class="text-center fs-3">{{alertMessage}}</p></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>
